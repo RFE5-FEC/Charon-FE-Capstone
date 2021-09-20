@@ -1,15 +1,27 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 var StyleSelector = (props) => {
   if (props.styles.product_id !== undefined) {
     return (
       <div className="styleselectormain">
+        <div id="modalArrRight">
+          <p>
+            {" "}
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              id="modalrightarrow"
+              title="Next"
+              onClick={(e) => props.rightClick(e)}
+            />
+          </p>
+        </div>
         <ul id="styleul">
           <h4 id="currentstylename"> Style > {props.currentStyle.name} </h4>
           <h3 className="fav">
-            <FontAwesomeIcon icon={faHeart} id="heart" title="Favorite"/>{" "}
+            <FontAwesomeIcon icon={faHeart} id="heart" title="Favorite" />{" "}
           </h3>
           {props.styles.results.map((style, index) => {
             return (

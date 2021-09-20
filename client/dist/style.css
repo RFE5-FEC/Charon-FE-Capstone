@@ -1,4 +1,3 @@
-
 html {
   -webkit-tap-highlight-color: transparent;
   -khtml-user-select: none;
@@ -25,7 +24,7 @@ body {
   color: rgb(34, 34, 34);
 }
 
-#header{
+#header {
   /* background-image: url('./../assets/ProjectLogo.png'); */
   padding: 0;
 }
@@ -89,7 +88,6 @@ body {
   color: #3b5998;
 }
 
-
 #readreviews {
   color: rgb(34, 34, 34);
 }
@@ -97,6 +95,11 @@ body {
 #readreviews:hover,
 #cartbtn:hover {
   cursor: pointer;
+}
+
+.outsideClick {
+  grid-template-columns: 3 / 3;
+  grid-template-rows: 5 / 5;
 }
 
 .searchBar {
@@ -118,6 +121,7 @@ body {
   grid-template-rows: 3.5% 5% 23% 10% 33%;
   grid-gap: 5px;
   position: relative;
+  align-items: stretch;
 }
 
 .defaultview {
@@ -139,20 +143,6 @@ body {
 .viewcontainer {
   width: 679px;
   height: 454px;
-}
-
-.mainimgmodal {
-  height: fit-content;
-  width: fit-content;
-}
-
-.modalview {
-  height: fit-content;
-  width: fit-content;
-  padding: 0;
-  position: absolute;
-  opacity: 1 !important;
-  border-radius: 5px;
 }
 
 #sizeselect > div,
@@ -207,13 +197,61 @@ body {
   width: 55px;
   height: 55px;
   margin-bottom: 7.5px;
-  ;
 }
 .thumbnails {
   list-style-type: none;
 }
 
 .galthumbs .thumbnails:nth-child(n + 6) {
+  display: none;
+}
+
+#modalthumbcaro {
+  width: 30px;
+  height: 40px;
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px groove #faf9f8;
+  box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modalgalthumbs {
+  display: grid;
+  margin-top: 550px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  list-style-type: none;
+  margin-left: 22px;
+  padding: 0;
+}
+
+.modalthumbnails {
+  margin: 0 0 0 0;
+  list-style-type: none;
+  padding: 0 0 0px 15px;
+  display: -moz-inline-box;
+  cursor: pointer;
+}
+
+.modalthumbnails:first-child {
+  box-shadow: none;
+  width: 0;
+  height: 0;
+}
+
+/* .modalthumbnails:nth-child(3) {
+  filter: drop-shadow(0 0 0.75rem crimson);
+  width: 0;
+  height: 0;
+} */
+
+.modalgalleryimg {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.modalgalthumbs .modalthumbnails:nth-child(n + 6) {
   display: none;
 }
 
@@ -250,7 +288,46 @@ body {
   cursor: pointer;
 }
 
+#modalArrRight {
+  margin-left: 19%;
+  margin-top: -9.2%;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+}
+
+#modalArrLeft {
+  margin-left: 20%;
+  margin-top: 19%;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+}
+
+#modalrightarrow,
+#modalleftarrow {
+  font-weight: bolder;
+  font-size: 30px;
+  color: #bd081c;
+  padding: 0;
+  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
+}
+
+#modalrightarrow:hover,
+#modalleftarrow:hover {
+  cursor: pointer;
+  color: crimson;
+}
+
 #rightarrow {
+  font-weight: bolder;
+  font-size: 17.5px;
+  color: #bd081c;
+  padding: 0;
+  filter: drop-shadow(7.5px 12.5px 2px #4444dd97);
+}
+
+#leftarrow {
   font-weight: bolder;
   font-size: 17.5px;
   color: #bd081c;
@@ -271,12 +348,45 @@ body {
 
 #downarrow:hover,
 #uparrow:hover,
-#rightarrow:hover {
+#rightarrow:hover,
+#leftarrow:hover {
   cursor: pointer;
   color: crimson;
 }
 
-.mainimg {
+.mainimgmodal {
+  height: fit-content;
+  width: fit-content;
+  /* aspect-ratio: 2/1; */
+  margin-left: -32.5px;
+}
+
+.modalview {
+  /* height: 55%; */
+  width: auto;
+  padding: 0;
+  position: absolute;
+  opacity: 1 !important;
+  border-radius: 5px;
+  /* aspect-ratio: 1/1; */
+}
+.fullimg {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+}
+
+.fullimg > img {
+  margin-top: 50px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+}
+
+.mainimg,
+.fullimg {
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -374,7 +484,6 @@ body {
   margin-top: -70px;
 }
 
-.zoom,
 .fav {
   grid-column: 3 / 3;
   grid-row: 2 / 5;
@@ -383,7 +492,6 @@ body {
   padding: 0;
 }
 
-.zoom:hover,
 .fav:hover {
   cursor: pointer;
 }
@@ -395,12 +503,6 @@ body {
   margin-left: 25px;
 }
 
-#zoomin {
-  grid-column: 3 / 3;
-  grid-row: 2 / 5;
-  margin-top: -70px;
-}
-
 .brandlogomain {
   grid-column: 2 / 4;
   grid-row: 5 / 5;
@@ -408,6 +510,10 @@ body {
   margin-left: 25px;
   height: fit-content;
   width: fit-content;
+}
+
+.brandlogomain > a {
+  text-decoration: none;
 }
 
 #facebook {
@@ -627,131 +733,126 @@ body {
   background-color: transparent;
 }
 
-
 /*---------------------------- Ratings & Reviews ---------------------------- */
-
-
 
 /*---------------------------- Q & A ---------------------------- */
 
-.SearchBar{
+.SearchBar {
   height: 60px;
   width: 85%;
   font-size: 15px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
-.Question{
+.Question {
   font-size: 18px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
-.HelpfulButton{
+.HelpfulButton {
   font-size: 15px;
   font-weight: italic;
   text-decoration: underline;
   color: gray;
 }
-.HelpfulButtonClicked{
+.HelpfulButtonClicked {
   font-size: 15px;
   font-weight: bold;
   text-decoration: underline;
   color: gray;
 }
-.HelpfulText{
+.HelpfulText {
   font-size: 15px;
   padding-left: 40%;
-  color:gray;
+  color: gray;
   /* position: relative; */
   /* position: justify; */
 }
-.HelpfulCounter{
+.HelpfulCounter {
   font-size: 15px;
   font-weight: italic;
   color: gray;
 }
-.AddAnswerButton{
+.AddAnswerButton {
   font-size: 15px;
   font-weight: italic;
   text-decoration: underline;
   color: gray;
 }
-.Divider{
+.Divider {
   font-size: 15px;
   font-weight: italic;
   color: gray;
 }
-.AnswerList{
+.AnswerList {
   font-size: 18px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: bold;
 }
-.IndAnswer{
-  color:gray;
+.IndAnswer {
+  color: gray;
   margin-bottom: 10px;
-
 }
-.AnswerInfo{
+.AnswerInfo {
   color: darkgray;
 }
-.Answers{
+.Answers {
   display: inline-table;
   margin: 0;
   padding: 5px;
   list-style-type: none;
   font-size: 14px;
 }
-.AnswerHelpfulButton{
- color: darkgray;
- text-decoration: underline;
-}
-.AnswerReport{
+.AnswerHelpfulButton {
   color: darkgray;
   text-decoration: underline;
 }
-.AnswerHelpfulCounter{
+.AnswerReport {
+  color: darkgray;
+  text-decoration: underline;
+}
+.AnswerHelpfulCounter {
   color: darkgray;
 }
-.LoadMoreAnswers{
-  font-family: 'Times New Roman', Times, serif;
+.LoadMoreAnswers {
+  font-family: "Times New Roman", Times, serif;
   padding-left: 25px;
   font-size: 13px;
   font-weight: bold;
 }
-.AddQuestionButton{
+.AddQuestionButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   margin: 10px;
   height: 50px;
   width: 200px;
 }
-.MoreQuestionsButton{
+.MoreQuestionsButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   margin: 10px;
   height: 50px;
   width: 250px;
 }
-.CollapseButton{
+.CollapseButton {
   font-size: 17px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   margin: 10px;
   height: 50px;
   width: 150px;
 }
-.QuestionAndAnswerBody{
+.QuestionAndAnswerBody {
   overflow: auto;
   max-height: 600px;
 }
-.AnswerModal{
+.AnswerModal {
   top: 200px;
   left: 100px;
   width: 600px;
@@ -761,7 +862,7 @@ body {
   border: 1px solid black;
   color: black;
 }
-.Modal{
+.Modal {
   top: 200px;
   left: 100px;
   width: 600px;
@@ -772,11 +873,11 @@ body {
   color: black;
   font-size: 18px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
-.AnswerImg{
+.AnswerImg {
   width: 100px;
-  height: 100px
+  height: 100px;
 }
 
 /* .AnswerModalText{

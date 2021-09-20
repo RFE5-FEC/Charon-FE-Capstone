@@ -9,6 +9,7 @@ import {
 } from "react-image-magnifiers";
 import ImgModal from "./ImgModal.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faExpandArrowsAlt } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,6 +18,17 @@ const MainView = (props) => {
     if (props.zoom === false) {
       return (
         <div className="viewcontainer">
+          <div id="modalArrLeft">
+            <p>
+              {" "}
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                id="modalleftarrow"
+                title="Last"
+                onClick={(e) => props.rightClick(e)}
+              />
+            </p>
+          </div>
           <FontAwesomeIcon
             icon={faExpandArrowsAlt}
             id="expandbtn"

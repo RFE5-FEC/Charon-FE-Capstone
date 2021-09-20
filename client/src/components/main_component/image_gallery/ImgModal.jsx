@@ -1,5 +1,5 @@
 import React from "react";
-import CursorZoom from "react-cursor-zoom";
+import ModalGallery from "./ModalGallery.jsx";
 import {
   Magnifier,
   GlassMagnifier,
@@ -8,8 +8,6 @@ import {
   MOUSE_ACTIVATION,
   TOUCH_ACTIVATION,
 } from "react-image-magnifiers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const ImgModal = (props) => {
   if (Object.keys(props.currentStyle).length !== 0) {
@@ -22,23 +20,20 @@ const ImgModal = (props) => {
               imageSrc={
                 props.currentStyle.photos[props.idxTicker].thumbnail_url
               }
-              imageAlt="new"
+              imageAlt="Expanded View Image"
               largeImageSrc={props.currentStyle.photos[props.idxTicker].url}
-              className="mainimg"
+              className="fullimg"
               magnifierBorderSize={1}
               magnifierSize="40%"
             />
           </div>
-          {/* <div id="modalArrRight">
-            <p>
-              {" "}
-              <FontAwesomeIcon
-                icon={faArrowRight}
-                id="rightarrow"
-                onClick={(e) => props.rightClick(e)}
-              />
-            </p>
-          </div> */}
+          <ModalGallery
+            currentStyle={props.currentStyle}
+            upClick={props.upClick}
+            downClick={props.downClick}
+            thumbnailClick={props.thumbnailClick}
+            galleryClick={props.galleryClick}
+          />
         </div>
       );
     } else if (props.modalState === false) {

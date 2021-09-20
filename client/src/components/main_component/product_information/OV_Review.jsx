@@ -3,7 +3,6 @@ import Select from "react-select";
 import Stars from "./Stars.jsx";
 
 const Review = (props) => {
-  console.log(props)
   let reviewData = props.reviewdata;
   let count = props.count;
   if (count > 0) {

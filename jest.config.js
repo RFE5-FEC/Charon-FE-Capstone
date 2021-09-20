@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-    '^.+\\.[t|j]sx?$': 'babel-jest',
+    "^.+\\.[t|j]sx?$": "babel-jest",
   },
-  setupFilesAfterEnv: ['<rootDir>client/setupTests.js'],
+  setupFilesAfterEnv: ["<rootDir>client/setupTests.js"],
 };

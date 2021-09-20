@@ -23,7 +23,6 @@ var ProductInfo = (props) => {
         <p style={priceStyle} id="curPrice">
           ${styleOGPrice}
         </p>
-
       </div>
     );
   } else {
@@ -32,17 +31,18 @@ var ProductInfo = (props) => {
     };
     var saleStyle = {
       color: "red",
-    }
+    };
     return (
       <div className="productinfomain">
         <br />
         <h4 id="curCateg">{currentCategory}</h4>
         <h1 id="curName">{currentName}</h1>
-        <p style={saleStyle} id="newPrice">${styleSalePrice}</p>
+        <p style={saleStyle} id="newPrice">
+          ${styleSalePrice}
+        </p>
         <p style={priceStyle} id="curPrice">
           ${styleOGPrice}
         </p>
-
       </div>
     );
   }

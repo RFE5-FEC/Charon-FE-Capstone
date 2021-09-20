@@ -1,4 +1,3 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -6,15 +5,15 @@ import axios from "axios";
 
 import Navbar from "../components/common/Navigation.jsx";
 import Overview from "../components/main_component/Overview.jsx";
-import QuestionsList from './Questions&Answers/QuestionsList.jsx'
+import QuestionsList from "./Questions&Answers/QuestionsList.jsx";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '0',
+      productId: "0",
       productInfo: [],
-      productName: '',
+      productName: "",
     };
     this.getProductData = this.getProductData.bind(this);
   }
@@ -30,7 +29,7 @@ class App extends React.Component {
         this.setState({
           productInfo: productData.data,
           productId: productData.data[0].id,
-          productName: productData.data[0].name
+          productName: productData.data[0].name,
         });
       })
       .catch((err) => {
@@ -50,10 +49,13 @@ class App extends React.Component {
             products={this.state.productInfo}
             productId={this.state.productId}
           />
-         <h1>Questions And Answers</h1>
-         <div className='QuestionAndAnswerBody'>
-           <QuestionsList currentProduct={this.state.productId} productName={this.state.productName}/>
-         </div>
+          <h1>Questions And Answers</h1>
+          <div className="QuestionAndAnswerBody">
+            <QuestionsList
+              currentProduct={this.state.productId}
+              productName={this.state.productName}
+            />
+          </div>
         </div>
       </BrowserRouter>
     );
