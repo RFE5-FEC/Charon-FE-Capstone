@@ -30,7 +30,7 @@ const Gallery = (props) => {
                       id={"img" + index}
                       className="galleryimg"
                       title={"Style " + (index + 1)}
-                      onClick={(e) => props.Click(index, e)}
+                      onClick={(e) => props.thumbnailClick(pic, index, e)}
                     />
                   </div>
                 </li>

@@ -48,14 +48,12 @@ class Overview extends React.Component {
     this.handleQtyChange = this.handleQtyChange.bind(this);
     this.downArrowOnClick = this.downArrowOnClick.bind(this);
     this.upArrowOnClick = this.upArrowOnClick.bind(this);
-    this.leftArrowOnClick = this.leftArrowOnClick.bind(this);
     this.rightArrowOnClick = this.rightArrowOnClick.bind(this);
     this.showModalClick = this.showModalClick.bind(this);
     this.thumbnailOnClick = this.thumbnailOnClick.bind(this);
     this.closeModalClick = this.closeModalClick.bind(this);
     this.addToCartPost = this.addToCartPost.bind(this);
-    this.modalGalleryClick = this.modalGalleryClick.bind(this);
-    // this.getImgSize = this.getImgSize.bind(this);
+    this.getImgSize = this.getImgSize.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -103,6 +101,7 @@ class Overview extends React.Component {
               currentStyle: this.state.styles.results[i],
               styleSkus: this.state.styles.results[i].skus,
             });
+            this.getImgSize(this.state.styles.results[i].photos[0].url);
           }
         }
         var defaultCheck = document.querySelector("#radio0");
@@ -129,23 +128,12 @@ class Overview extends React.Component {
   };
 
   showModalClick = (e) => {
-    var dropdowns = document.querySelectorAll(
-      "#sizeselect > div, #qtyselect > div, .checked"
-    );
-    dropdowns.forEach((x) => {
-      x.style.opacity = "0";
-    });
     var mainViews = document.querySelectorAll(
-      ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
+      ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, #sizeselect > div, #qtyselect > div, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
     );
-    mainViews.forEach((y) => {
-      y.style.visibility = "hidden";
-    });
-    var modalArrows = document.querySelectorAll(
-      "#modalArrLeft, #modalArrRight"
-    );
-    modalArrows.forEach((z) => {
-      z.style.visibility = "visible";
+    mainViews.forEach((x) => {
+      x.style.opacity = "0";
+      // x.style.visibility = "hidden"
     });
     this.setState({
       modal: true,
@@ -161,23 +149,12 @@ class Overview extends React.Component {
       this.setState({
         modal: false,
       });
-      var dropdowns = document.querySelectorAll(
-        "#sizeselect > div, #qtyselect > div, .checked"
-      );
-      dropdowns.forEach((x) => {
-        x.style.opacity = "1";
-      });
-      var modalArrows = document.querySelectorAll(
-        "#modalArrLeft, #modalArrRight"
-      );
-      modalArrows.forEach((y) => {
-        y.style.visibility = "hidden";
-      });
       var mainViews = document.querySelectorAll(
-        ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
+        ".mainimg, .galthumbs, #uparrow, #downarrow, #rightarrow, #curCateg, #curName, #newPrice, #curPrice, #sizeselect > div, #qtyselect > div, .star-ratings, #styleul, .cartbtn, .brandlogomain, .freeformmain, #readreviews, #expandbtn"
       );
-      mainViews.forEach((z) => {
-        z.style.visibility = "visible";
+      mainViews.forEach((x) => {
+        x.style.opacity = "1";
+        // x.style.visibility = "visible"
       });
       var defaultImg = document.querySelector(".mainimg");
       if (defaultImg.style.opacity === "1") {
@@ -186,39 +163,15 @@ class Overview extends React.Component {
     }
   };
 
-  modalGalleryClick = (index, e) => {
-    e.stopPropagation();
-    var recurse = (target) => {
-      var ul = document.querySelector(".modalgalthumbs");
-      var children = document.querySelectorAll(".modalthumbnails");
-      var modalCaro = document.querySelectorAll("#modalthumbcaro");
-      var currentId = modalCaro[0].lastChild.id;
-      if (target === currentId) {
-        return;
-      }
-      if (target !== currentId) {
-        var el = Array.prototype.slice.call(children, 0, 1);
-        ul.appendChild(el.shift());
-        var idxState = Number(target.split("img")[1]);
-        this.setState({
-          idx: idxState,
-        });
-      }
-      recurse(target);
-    };
-    recurse(e.target.id);
+  getImgSize = (img) => {
+    img = document.getElementsByClassName("mainimg");
+    var imgHeight = img.clientHeight;
+    var imgWidth = img.clientWidth;
+    this.setState({
+      height: imgHeight,
+      width: imgWidth,
+    });
   };
-
-  // getImgSize = (img) => {
-  //   img = document.getElementsByClassName("mainimg");
-  //   var imgHeight = img[0].clientHeight * 1.5;
-  //   var imgWidth = img[0].clientWidth * 1.5;
-  //   this.setState({
-  //     height: imgHeight,
-  //     width: imgWidth,
-  //   });
-  //   console.log('HEIGHT', this.state.height)
-  // };
 
   styleOnClick = (selection, index, e) => {
     e.preventDefault();
@@ -231,6 +184,7 @@ class Overview extends React.Component {
       allChecks[i].style.visibility = "hidden";
     }
     currentCheck.style.visibility = "visible";
+    console.log(this.state.currentStyle.favorite);
   };
 
   zoomOnClick = () => {
@@ -239,7 +193,7 @@ class Overview extends React.Component {
     });
   };
 
-  thumbnailOnClick = (index, e) => {
+  thumbnailOnClick = (x, index, e) => {
     var recurse = (target) => {
       var ul = document.querySelector(".galthumbs");
       var children = document.querySelectorAll(".thumbnails");
@@ -249,8 +203,8 @@ class Overview extends React.Component {
         return;
       }
       if (target !== currentId) {
-        var el = Array.prototype.slice.call(children, 0, 1);
-        ul.appendChild(el.shift());
+        var lastEl = Array.prototype.slice.call(children, 0, 1);
+        ul.appendChild(lastEl.shift());
         var indexState = Number(target.split("img")[1]);
         this.setState({
           idx: indexState,
@@ -298,13 +252,7 @@ class Overview extends React.Component {
   };
 
   rightArrowOnClick = (e) => {
-    e.stopPropagation();
     this.downArrowOnClick();
-  };
-
-  leftArrowOnClick = (e) => {
-    e.stopPropagation();
-    this.upArrowOnClick();
   };
 
   imageMouseOver = () => {
@@ -343,23 +291,18 @@ class Overview extends React.Component {
         <MainImage
           currentStyle={this.state.currentStyle}
           zoom={this.state.toggleZoom}
-          leftClick={this.leftArrowOnClick}
           rightClick={this.rightArrowOnClick}
           toggleModal={this.showModalClick}
           idxTicker={this.state.idx}
           height={this.state.height}
           width={this.state.width}
         />
-
         <ImgModal
           currentStyle={this.state.currentStyle}
-          upClick={this.upArrowOnClick}
-          downClick={this.downArrowOnClick}
-          galleryClick={this.modalGalleryClick}
+          rightClick={this.rightArrowOnClick}
           modalState={this.state.modal}
           idxTicker={this.state.idx}
         />
-
         <Gallery
           currentStyle={this.state.currentStyle}
           upClick={this.upArrowOnClick}
@@ -385,7 +328,6 @@ class Overview extends React.Component {
           styleClick={this.styleOnClick}
           zoom={this.state.toggleZoom}
           zoomClick={this.zoomOnClick}
-          rightClick={this.rightArrowOnClick}
         />
 
         <SizeSelector
