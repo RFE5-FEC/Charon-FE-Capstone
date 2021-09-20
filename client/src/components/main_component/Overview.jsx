@@ -29,6 +29,8 @@ class Overview extends React.Component {
       idx: 0,
       height: 0,
       width: 0,
+      count: 0,
+      page: 0,
       favorite: false,
       toggleZoom: false,
       styleSkus: {},
@@ -116,6 +118,8 @@ class Overview extends React.Component {
       .then((reviewData) => {
         this.setState({
           productReview: reviewData.data.results,
+          count: reviewData.data.count,
+          page: reviewData.data.page,
         });
       })
       .catch((err) => {

@@ -7,7 +7,7 @@ module.exports = (app) => {
         console.error("Error: ", err);
         res.status(500).end();
       } else {
-        console.error("Success: ", responseData.data);
+        console.error('Success: ', responseData.data);
         res.send(responseData.data);
       }
     });

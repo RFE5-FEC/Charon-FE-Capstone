@@ -20,6 +20,7 @@ const MainView = (props) => {
           <FontAwesomeIcon
             icon={faExpandArrowsAlt}
             id="expandbtn"
+            title="Expanded View"
             onClick={(e) => props.toggleModal(e)}
           />
           <div className="defaultview">
@@ -27,6 +28,7 @@ const MainView = (props) => {
               src={props.currentStyle.photos[props.idxTicker].url}
               alt="new"
               className="mainimg"
+              title={props.currentStyle.name}
               onClick={(e) => props.toggleModal(e)}
             />
           </div>
@@ -36,6 +38,7 @@ const MainView = (props) => {
               <FontAwesomeIcon
                 icon={faArrowRight}
                 id="rightarrow"
+                title="Next Image"
                 onClick={(e) => props.rightClick(e)}
               />
             </p>

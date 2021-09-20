@@ -9,6 +9,7 @@ const AddToCart = (props) => {
         <button
           type="submit"
           className="cartbtn"
+          title="Add to Cart"
           onClick={(e) => props.postCart(e)}
         >
           <FontAwesomeIcon icon={faShoppingBag} id="shoppingbag" /> Add To Cart
